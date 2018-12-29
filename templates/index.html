@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Registration Form</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+        integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" 
+        crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>Registration Form</h2>
+        </div>
+
+        <form action="/processNew" method="POST" id="register"></form>
+        <form action="/processLogin" method="POST" id="login"></form>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" name="first_name" id="first_name" 
+                    placeholder="First name" form="register">
+            </div>
+            <div class="col">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" name="last_name" id="last_name" 
+                    placeholder="Last name" form="register">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col">
+                {% with messages = get_flashed_messages(category_filter=["fName"]) %}
+                    {% if messages %}
+                        <span class="text-danger">{{ messages[0] }}</span>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col">
+                {% with messages = get_flashed_messages(category_filter=["lName"]) %}
+                    {% if messages %}
+                        <span class="text-danger">{{ messages[0] }}</span>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" 
+                    placeholder="Email address" form="register">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col">
+                {% with messages = get_flashed_messages(category_filter=["email"]) %}
+                    {% if messages %}
+                        <span class="text-danger">{{ messages[0] }}</span>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" 
+                    placeholder="Password" form="register">
+            </div>
+            <div class="col">
+                <label for="pw_confirm">Password (Confirm)</label>
+                <input type="password" class="form-control" name="pw_confirm" id="pw_confirm" 
+                    placeholder="Password confirm" form="register">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col">
+                {% with messages = get_flashed_messages(category_filter=["password"]) %}
+                    {% if messages %}
+                        <span class="text-danger">{{ messages[0] }}</span>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col">
+                {% with messages = get_flashed_messages(category_filter=["pwconfirm"]) %}
+                    {% if messages %}
+                        <span class="text-danger">{{ messages[0] }}</span>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col form-group d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mr-4" form="register">Register</button>
+                <button type="submit" class="btn btn-success" data-toggle="collapse" 
+                    data-target=".login-fields">Have an account?</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row collapse mb-3 login-fields">
+            <div class="col"></div>
+            <div class="col">
+                <label for="emailL" class="d-flex justify-content-end">Email</label>
+                <input type="email" class="form-control text-right" name="emailL" id="emailL"
+                    placeholder="Email address" form="login">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row collapse mb-3 login-fields">
+            <div class="col"></div>
+            <div class="col d-flex justify-content-end">
+                {% with messages = get_flashed_messages(category_filter=["emailL"]) %}
+                    {% if messages %}
+                        <span class="text-danger">{{ messages[0] }}</span>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    
+        <div class="row collapse mb-3 login-fields">
+            <div class="col"></div>
+            <div class="col justify-content-end">
+                <label for="passwordL" class="d-flex justify-content-end">Password</label>
+                <input type="password" class="form-control text-right" name="passwordL" id="passwordL"
+                    placeholder="Password" form="login">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row collapse mb-3 login-fields">
+            <div class="col"></div>
+            <div class="col d-flex justify-content-end">
+                {% with messages = get_flashed_messages(category_filter=["passwordL"]) %}
+                    {% if messages %}
+                        <span class="text-danger">{{ messages[0] }}</span>
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    
+        <div class="row collapse login-fields">
+            <div class="col-md-2"></div>
+            <div class="col form-group d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary" form="login">Login</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" 
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" 
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
